@@ -17,7 +17,7 @@ const authors = [
   { name: "Brandon Sanderson", age: 42, id: "2" },
   { name: "Terry Pratchett", age: 66, id: "3" },
 ];
-
+// B O O K   T Y P E
 const BookType = new GraphQLObjectType({
   name: "Book",
   fields: () => ({
@@ -33,6 +33,8 @@ const BookType = new GraphQLObjectType({
     },
   }),
 });
+
+// A U T H O R    T Y P E
 const AuthorType = new GraphQLObjectType({
   name: "Author",
   fields: () => ({
@@ -66,6 +68,19 @@ const RootQuery = new GraphQLObjectType({
       resolve(parent, args) {
         // code to get data from db / other source
         return _.find(authors, { id: args.id });
+      },
+    },
+    // more on root queryies ,ex: not using any id:
+    books: {
+      type: new GraphQLList(BookType),
+      resolve(parent, args) {
+        return books;
+      },
+    },
+    authors: {
+      type: new GraphQLList(AuthorType),
+      resolve(parent, args) {
+        return authors;
       },
     },
   },
