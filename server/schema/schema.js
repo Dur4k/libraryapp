@@ -3,7 +3,7 @@ const _ = require("lodash");
 const Book = require("../models/book");
 const Author = require("../models/author");
 
-const { GraphQLObjectType, GraphQLString, GraphQLSchema, GraphQLID, GraphQLInt, GraphQLList } = graphql;
+const { GraphQLObjectType, GraphQLString, GraphQLSchema, GraphQLID, GraphQLInt, GraphQLList, GraphQLNonNull } = graphql;
 
 // B O O K   T Y P E
 const BookType = new GraphQLObjectType({
@@ -53,7 +53,7 @@ const RootQuery = new GraphQLObjectType({
         return Book.findById(args.id);
       },
     },
-    authors: {
+    author: {
       type: AuthorType,
       args: { id: { type: GraphQLID } },
       resolve(parent, args) {
@@ -86,8 +86,8 @@ const Mutation = new GraphQLObjectType({
     addAuthor: {
       type: AuthorType,
       args: {
-        name: { type: GraphQLString },
-        age: { type: GraphQLInt },
+        name: { type: new GraphQLNonNull(GraphQLString) },
+        age: { type: new GraphQLNonNull(GraphQLInt) },
       },
       resolve(parent, args) {
         let author = new Author({
@@ -100,8 +100,8 @@ const Mutation = new GraphQLObjectType({
     addBook: {
       type: BookType,
       args: {
-        name: { type: GraphQLString },
-        genre: { type: GraphQLString },
+        name: { type: new GraphQLNonNull(GraphQLString) },
+        genre: { type: new GraphQLNonNull(GraphQLString) },
         authorId: { type: GraphQLID },
       },
       resolve(parent, args) {

@@ -7,7 +7,10 @@ mongoose.connect("mongodb+srv://jan:defence99@cluster0.zkaiu.mongodb.net/myFirst
 mongoose.connection.once("open", () => {
   console.log("connected to database");
 });
+const { ApolloServer } = require("apollo-server-express");
 const app = express();
+const server = new ApolloServer({ schema });
+server.applyMiddleware({ app });
 
 // bind express with graphql
 app.use(
