@@ -1,16 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
+import { getAuthorQuery, addBookMutation } from "../queries/queries";
+import { useQuery, useMutation } from "@apollo/client";
 
-import { gql, useQuery } from "@apollo/client";
-
-const getAuthorQuery = gql`
-  {
-    authors {
-      name
-      id
-    }
-  }
-`;
 const Addbook = () => {
+  const [inputData, setInputData] = useState({ name: "", gendre: "", authorId: "" });
+  const [addBookMut, { dataMutation }] = useMutation(addBookMutation);
+
   const { loading, error, data } = useQuery(getAuthorQuery);
   if (loading) return <p>Loading....</p>;
   if (error) return <p>Something went wrong</p>;
@@ -18,29 +13,39 @@ const Addbook = () => {
     return <option key={author.id}> {author.name}</option>;
   });
 
-  console.log(data);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    addBookMut({
+      variables: {
+        name: form.name,
+        genre: form.genre,
+        authorId: form.authorId,
+      },
+    });
+  };
+
   return (
     <div>
-      <form id="add-book">
+      <form onSubmit={handleSubmit} id="add-book">
         <div className="field">
           <label>Book name:</label>
-          <input type="text" />
+          <input value={inputData.name} onChange={(e) => setInputData({ ...inputData, name: e.target.value })} type="text" />
         </div>
 
         <div className="field">
           <label>Genre:</label>
-          <input type="text" />
+          <input value={inputData.gendre} onChange={(e) => setInputData({ ...inputData, gendre: e.target.value })} type="text" />
         </div>
 
         <div className="field">
           <label>Author:</label>
-          <select>
+          <select value={inputData.authorId} onChange={(e) => setInputData({ ...inputData, authorId: e.target.value })}>
             <option>Select Author</option>
             {author}
           </select>
         </div>
 
-        <button></button>
+        <button>+</button>
       </form>
     </div>
   );
