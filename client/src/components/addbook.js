@@ -4,9 +4,10 @@ import { useQuery, useMutation } from "@apollo/client";
 
 const Addbook = () => {
   const [inputData, setInputData] = useState({ name: "", gendre: "", authorId: "" });
+  const { loading, error, data } = useQuery(getAuthorQuery);
+
   const [addBookMut, { dataMutation }] = useMutation(addBookMutation);
 
-  const { loading, error, data } = useQuery(getAuthorQuery);
   if (loading) return <p>Loading....</p>;
   if (error) return <p>Something went wrong</p>;
   const author = data.authors.map((author) => {
@@ -17,11 +18,13 @@ const Addbook = () => {
     e.preventDefault();
     addBookMut({
       variables: {
-        name: form.name,
-        genre: form.genre,
-        authorId: form.authorId,
+        name: inputData.name,
+        genre: inputData.gendre,
+        authorId: inputData.authorId,
       },
-    });
+    })
+      .then((v) => console.log(v))
+      .catch((e) => console.log(e));
   };
 
   return (
