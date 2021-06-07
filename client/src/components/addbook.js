@@ -11,7 +11,11 @@ const Addbook = () => {
   if (loading) return <p>Loading....</p>;
   if (error) return <p>Something went wrong</p>;
   const author = data.authors.map((author) => {
-    return <option key={author.id}> {author.name}</option>;
+    return (
+      <option value={author.id} key={author.id}>
+        {author.name}
+      </option>
+    );
   });
 
   const handleSubmit = (e) => {

@@ -16,8 +16,6 @@ const BookList = () => {
     );
   });
 
-  console.log(data);
-
   return (
     <div>
       <ul id="book-list">{books}</ul>
