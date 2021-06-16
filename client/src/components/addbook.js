@@ -3,7 +3,7 @@ import { getAuthorQuery, addBookMutation, getBooksQuery, addAuthorMutation } fro
 import { useQuery, useMutation } from "@apollo/client";
 
 const Addbook = () => {
-  const [inputData, setInputData] = useState({ name: "", gendre: "", authorId: "" });
+  const [inputData, setInputData] = useState({ name: "", gendre: "", authorId: "60c9ed9e004a603a52db7737" });
   const [inputData2, setInputData2] = useState({ name: "", age: 0 });
 
   const { loading, error, data } = useQuery(getAuthorQuery);
@@ -47,40 +47,74 @@ const Addbook = () => {
       .catch((e) => console.log(e));
   };
   return (
-    <div>
-      <form onSubmit={handleSubmit} id="add-book">
+    <div className="p-5 w-auto flex-wrap items-start flex   ">
+      <form
+        className="flex-grow-0 px-5 py-3 bg-blue-200 w-auto  rounded-xl flex flex-wrap flex-col space-y-2 mr-4 mb-4 "
+        onSubmit={handleSubmit}
+        id="add-book"
+      >
         <div className="field">
           <label>Book name:</label>
-          <input required value={inputData.name} onChange={(e) => setInputData({ ...inputData, name: e.target.value })} type="text" />
+          <input
+            className="bg-gray-200 rounded-xl ml-2 pl-2"
+            required
+            value={inputData.name}
+            onChange={(e) => setInputData({ ...inputData, name: e.target.value })}
+            type="text"
+          />
         </div>
 
-        <div className="field">
+        <div className="">
           <label>Genre:</label>
-          <input required value={inputData.gendre} onChange={(e) => setInputData({ ...inputData, gendre: e.target.value })} type="text" />
+          <input
+            className="bg-gray-200 rounded-xl ml-2 pl-2"
+            required
+            value={inputData.gendre}
+            onChange={(e) => setInputData({ ...inputData, gendre: e.target.value })}
+            type="text"
+          />
         </div>
 
         <div className="field">
           <label>Author:</label>
-          <select required value={inputData.authorId} onChange={(e) => setInputData({ ...inputData, authorId: e.target.value })}>
-            <option required>Select Author</option>
+          <select
+            className="bg-gray-200 rounded-xl ml-2 pl-2"
+            required
+            value={inputData.authorId}
+            onChange={(e) => setInputData({ ...inputData, authorId: e.target.value })}
+          >
+            <option>Select Author</option>
             {author}
           </select>
         </div>
 
-        <button>+</button>
+        <button className="bg-green-400 rounded-xl border border-black">+add Book</button>
       </form>
-      <form onSubmit={handleSubmit2} id="add-book">
+      {/* add author */}
+      <form onSubmit={handleSubmit2} className="space-y-2 flex-grow-0 px-5 py-3 bg-blue-200 w-auto  rounded-xl flex flex-wrap flex-col" id="add-book">
         <div className="field">
           <label>Author NAme:</label>
-          <input required value={inputData2.name} onChange={(e) => setInputData2({ ...inputData2, name: e.target.value })} type="text" />
+          <input
+            className="bg-gray-200 rounded-xl ml-2 pl-2"
+            required
+            value={inputData2.name}
+            onChange={(e) => setInputData2({ ...inputData2, name: e.target.value })}
+            type="text"
+          />
         </div>
 
         <div className="field">
           <label>Age:</label>
-          <input required value={inputData2.age} onChange={(e) => setInputData2({ ...inputData2, age: parseInt(e.target.value) })} type="number" />
+          <input
+            className="bg-gray-200 rounded-xl ml-2 pl-2"
+            required
+            value={inputData2.age}
+            onChange={(e) => setInputData2({ ...inputData2, age: parseInt(e.target.value) })}
+            type="number"
+          />
         </div>
 
-        <button>+</button>
+        <button className="bg-green-400 rounded-xl border border-black">+add Author</button>
       </form>
     </div>
   );

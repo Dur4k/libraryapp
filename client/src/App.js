@@ -1,5 +1,4 @@
 import React from "react";
-import "./App.css";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { ApolloProvider } from "@apollo/client";
 
@@ -15,7 +14,7 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <div className="App">
+      <div className="bg-blue-300 w-full h-full">
         <BookList />
         <Addbook />
       </div>

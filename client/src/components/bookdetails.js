@@ -11,16 +11,26 @@ const BookDetails = ({ bookID }) => {
   const displayDetails = () => {
     if (data.book) {
       return (
-        <div>
-          <h2>{data.book.name}</h2>
-          <p>{data.book.genre}</p>
-          <p>{data.book.author.name}</p>
-          <p>All books by this author:</p>
-          <ul className="other-books">
-            {data.book.author.books.map((item) => {
-              return <li key={item.id}>{item.name}</li>;
-            })}
-          </ul>
+        <div className="px-5 py-3 bg-blue-200 rounded-xl">
+          <h2 className="text-4xl font-mono">{data.book.name}</h2>
+          <div className="flex mt-2 ">
+            Genre <div className="ml-2 italic font-semibold">{data.book.genre}</div>
+          </div>{" "}
+          {!data.book.author ? (
+            <div className="mt-2 italic">...no additional data</div>
+          ) : (
+            <>
+              <div className="flex ">
+                Written by <div className="ml-1 italic font-semibold">{data.book.author.name}</div>
+              </div>
+              <p className="text-lg font-semibold mt-3 mb-1 border-b border-black">All books by this author:</p>
+              <ul className="other-books">
+                {data.book.author.books.map((item) => {
+                  return <li key={item.id}>{item.name}</li>;
+                })}
+              </ul>
+            </>
+          )}
         </div>
       );
     } else {
