@@ -34,7 +34,7 @@ const BookDetails = ({ bookID }) => {
         </div>
       );
     } else {
-      return <div>no data</div>;
+      return <div className="italic"> 👈 select book for more info</div>;
     }
   };
 
