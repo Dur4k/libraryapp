@@ -46,24 +46,23 @@ const Addbook = () => {
       .then((v) => console.log(v))
       .catch((e) => console.log(e));
   };
-  console.log(inputData2);
   return (
     <div>
       <form onSubmit={handleSubmit} id="add-book">
         <div className="field">
           <label>Book name:</label>
-          <input value={inputData.name} onChange={(e) => setInputData({ ...inputData, name: e.target.value })} type="text" />
+          <input required value={inputData.name} onChange={(e) => setInputData({ ...inputData, name: e.target.value })} type="text" />
         </div>
 
         <div className="field">
           <label>Genre:</label>
-          <input value={inputData.gendre} onChange={(e) => setInputData({ ...inputData, gendre: e.target.value })} type="text" />
+          <input required value={inputData.gendre} onChange={(e) => setInputData({ ...inputData, gendre: e.target.value })} type="text" />
         </div>
 
         <div className="field">
           <label>Author:</label>
-          <select value={inputData.authorId} onChange={(e) => setInputData({ ...inputData, authorId: e.target.value })}>
-            <option>Select Author</option>
+          <select required value={inputData.authorId} onChange={(e) => setInputData({ ...inputData, authorId: e.target.value })}>
+            <option required>Select Author</option>
             {author}
           </select>
         </div>
@@ -73,12 +72,12 @@ const Addbook = () => {
       <form onSubmit={handleSubmit2} id="add-book">
         <div className="field">
           <label>Author NAme:</label>
-          <input value={inputData2.name} onChange={(e) => setInputData2({ ...inputData2, name: e.target.value })} type="text" />
+          <input required value={inputData2.name} onChange={(e) => setInputData2({ ...inputData2, name: e.target.value })} type="text" />
         </div>
 
         <div className="field">
           <label>Age:</label>
-          <input value={inputData2.age} onChange={(e) => setInputData2({ ...inputData2, age: parseInt(e.target.value) })} type="number" />
+          <input required value={inputData2.age} onChange={(e) => setInputData2({ ...inputData2, age: parseInt(e.target.value) })} type="number" />
         </div>
 
         <button>+</button>

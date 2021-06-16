@@ -15,7 +15,6 @@ const BookType = new GraphQLObjectType({
     author: {
       type: AuthorType,
       resolve(parent, args) {
-        console.log(parent);
         return Author.findById(parent.authorId);
         // return _.find(authors, { id: parent.authorId });
       },
@@ -97,6 +96,15 @@ const Mutation = new GraphQLObjectType({
         return author.save();
       },
     },
+    deleteAuthor: {
+      type: AuthorType,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLID) },
+      },
+      resolve(parentValue, args) {
+        return Author.findByIdAndDelete(args.id);
+      },
+    },
     addBook: {
       type: BookType,
       args: {
@@ -111,6 +119,15 @@ const Mutation = new GraphQLObjectType({
           authorId: args.authorId,
         });
         return book.save();
+      },
+    },
+    deleteBook: {
+      type: BookType,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLID) },
+      },
+      resolve(parentValue, args) {
+        return Book.findByIdAndDelete(args.id);
       },
     },
   },
