@@ -3,7 +3,7 @@ import { getBookQuery } from "../queries/queries";
 import { useQuery } from "@apollo/client";
 
 const BookDetails = ({ bookID }) => {
-  const { loading, error, data } = useQuery(getBookQuery, {
+  const { loading, data } = useQuery(getBookQuery, {
     variables: { id: bookID },
   });
   if (loading) return <p>Loading....</p>;

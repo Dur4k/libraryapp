@@ -47,76 +47,84 @@ const Addbook = () => {
       .catch((e) => console.log(e));
   };
   return (
-    <div className="p-5 w-auto flex-wrap items-start flex   ">
-      <form
-        className="flex-grow-0 px-5 py-3 bg-blue-200 w-auto  rounded-xl flex flex-wrap flex-col space-y-2 mr-4 mb-4 "
-        onSubmit={handleSubmit}
-        id="add-book"
-      >
-        <div className="field">
-          <label>Book name:</label>
-          <input
-            className="bg-gray-200 rounded-xl ml-2 pl-2"
-            required
-            value={inputData.name}
-            onChange={(e) => setInputData({ ...inputData, name: e.target.value })}
-            type="text"
-          />
-        </div>
+    <>
+      <div className="px-5 text-xl">Add what are you reading 📚</div>
 
-        <div className="">
-          <label>Genre:</label>
-          <input
-            className="bg-gray-200 rounded-xl ml-2 pl-2"
-            required
-            value={inputData.gendre}
-            onChange={(e) => setInputData({ ...inputData, gendre: e.target.value })}
-            type="text"
-          />
-        </div>
+      <div className="p-5 w-auto flex-wrap items-start flex   ">
+        <form
+          className="flex-grow-0 px-5 py-3 bg-blue-200 w-auto  rounded-xl flex flex-wrap flex-col space-y-2 mr-4 mb-4 "
+          onSubmit={handleSubmit}
+          id="add-book"
+        >
+          <div className="field">
+            <label>Book name:</label>
+            <input
+              className="bg-gray-200 rounded-xl ml-2 pl-2"
+              required
+              value={inputData.name}
+              onChange={(e) => setInputData({ ...inputData, name: e.target.value })}
+              type="text"
+            />
+          </div>
 
-        <div className="field">
-          <label>Author:</label>
-          <select
-            className="bg-gray-200 rounded-xl ml-2 pl-2"
-            required
-            value={inputData.authorId}
-            onChange={(e) => setInputData({ ...inputData, authorId: e.target.value })}
-          >
-            <option>Select Author</option>
-            {author}
-          </select>
-        </div>
+          <div className="">
+            <label>Genre:</label>
+            <input
+              className="bg-gray-200 rounded-xl ml-2 pl-2"
+              required
+              value={inputData.gendre}
+              onChange={(e) => setInputData({ ...inputData, gendre: e.target.value })}
+              type="text"
+            />
+          </div>
 
-        <button className="bg-green-400 rounded-xl border border-black">+add Book</button>
-      </form>
-      {/* add author */}
-      <form onSubmit={handleSubmit2} className="space-y-2 flex-grow-0 px-5 py-3 bg-blue-200 w-auto  rounded-xl flex flex-wrap flex-col" id="add-book">
-        <div className="field">
-          <label>Author NAme:</label>
-          <input
-            className="bg-gray-200 rounded-xl ml-2 pl-2"
-            required
-            value={inputData2.name}
-            onChange={(e) => setInputData2({ ...inputData2, name: e.target.value })}
-            type="text"
-          />
-        </div>
+          <div className="field">
+            <label>Author:</label>
+            <select
+              className="bg-gray-200 rounded-xl ml-2 pl-2"
+              required
+              value={inputData.authorId}
+              onChange={(e) => setInputData({ ...inputData, authorId: e.target.value })}
+            >
+              <option>Select Author</option>
+              {author}
+            </select>
+          </div>
 
-        <div className="field">
-          <label>Age:</label>
-          <input
-            className="bg-gray-200 rounded-xl ml-2 pl-2"
-            required
-            value={inputData2.age}
-            onChange={(e) => setInputData2({ ...inputData2, age: parseInt(e.target.value) })}
-            type="number"
-          />
-        </div>
+          <button className="bg-green-400 rounded-xl border border-black">+add Book</button>
+        </form>
+        {/* add author */}
+        <form
+          onSubmit={handleSubmit2}
+          className="space-y-2 flex-grow-0 px-5 py-3 bg-blue-200 w-auto  rounded-xl flex flex-wrap flex-col"
+          id="add-book"
+        >
+          <div className="field">
+            <label>Author NAme:</label>
+            <input
+              className="bg-gray-200 rounded-xl ml-2 pl-2"
+              required
+              value={inputData2.name}
+              onChange={(e) => setInputData2({ ...inputData2, name: e.target.value })}
+              type="text"
+            />
+          </div>
 
-        <button className="bg-green-400 rounded-xl border border-black">+add Author</button>
-      </form>
-    </div>
+          <div className="field">
+            <label>Age:</label>
+            <input
+              className="bg-gray-200 rounded-xl ml-2 pl-2"
+              required
+              value={inputData2.age}
+              onChange={(e) => setInputData2({ ...inputData2, age: parseInt(e.target.value) })}
+              type="number"
+            />
+          </div>
+
+          <button className="bg-green-400 rounded-xl border border-black">+add Author</button>
+        </form>
+      </div>
+    </>
   );
 };
 

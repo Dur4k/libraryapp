@@ -16,7 +16,6 @@ function App() {
     <ApolloProvider client={client}>
       <div className="bg-blue-300 w-full h-screen">
         <BookList />
-        <div className="px-5 text-xl">Add what are you reading 📚</div>
         <Addbook />
       </div>
     </ApolloProvider>

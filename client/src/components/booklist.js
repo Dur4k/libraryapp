@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { getBooksQuery, deleteBookMutation } from "../queries/queries";
 import { useQuery, useMutation } from "@apollo/client";
-
+import ListofBooks from "./listofbooks";
 import BookDetails from "./bookdetails";
 
 const BookList = () => {
@@ -41,11 +41,7 @@ const BookList = () => {
     <>
       <div className="px-5 py-2 text-2xl text-bold">List of my Books :</div>
       <div className="p-5 w-full flex-wrap items-start flex   	 ">
-        <div className="flex-grow-0 px-5 py-3 bg-blue-200 w-3/5  rounded-xl flex flex-wrap flex-row mr-4 mb-4 ">
-          <ul className="flex flex-row  flex-wrap" id="book-list   ">
-            {books}
-          </ul>
-        </div>
+        <ListofBooks books={books} />
         <BookDetails className="  w-2/5 h-auto" bookID={selected.selected} />
       </div>
     </>
